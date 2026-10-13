@@ -32,8 +32,8 @@ const dnsConfig = {
     // QQ快速登录检测失败
     "localhost.ptlogin2.qq.com",
     "localhost.sec.qq.com",
-      // 追加以下条目
-    "+.in-addr.arpa", 
+    // 追加以下条目
+    "+.in-addr.arpa",
     "+.ip6.arpa",
     "time.*.com",
     "time.*.gov",
@@ -41,12 +41,12 @@ const dnsConfig = {
     // 微信快速登录检测失败
     "localhost.work.weixin.qq.com"
   ],
-  "default-nameserver": ["223.5.5.5","1.2.4.8"],//可修改成自己ISP的DNS
+  "default-nameserver": ["223.5.5.5", "1.2.4.8"],//可修改成自己ISP的DNS
   "nameserver": [...foreignNameservers],
-  "proxy-server-nameserver":[...domesticNameservers],
-  "direct-nameserver":[...domesticNameservers],
+  "proxy-server-nameserver": [...domesticNameservers],
+  "direct-nameserver": [...domesticNameservers],
   "nameserver-policy": {
-  "geosite:private,cn": domesticNameservers
+    "geosite:private,cn": domesticNameservers
   }
 };
 // 规则集通用配置
@@ -163,25 +163,25 @@ const ruleProviders = {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/BilibiliHMT.txt",
-    "path": "./ruleset/xiaolin-007/BilibiliHMT.yaml"    
+    "path": "./ruleset/xiaolin-007/BilibiliHMT.yaml"
   },
   "AI": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/AI.txt",
-    "path": "./ruleset/xiaolin-007/AI.yaml"    
+    "path": "./ruleset/xiaolin-007/AI.yaml"
   },
   "TikTok": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/TikTok.txt",
-    "path": "./ruleset/xiaolin-007/TikTok.yaml"    
+    "path": "./ruleset/xiaolin-007/TikTok.yaml"
   },
   "Microsoft": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Microsoft.txt",
-    "path": "./ruleset/xiaolin-007/Microsoft.yaml"    
+    "path": "./ruleset/xiaolin-007/Microsoft.yaml"
   },
 };
 // 规则
@@ -228,7 +228,6 @@ const groupBaseOption = {
   "url": "https://www.google.com/generate_204",
   "lazy": true,
   "max-failed-times": 3,
-  "hidden": false
 };
 
 // 程序入口
@@ -247,17 +246,28 @@ function main(config) {
   config["proxy-groups"] = [
     {
       ...groupBaseOption,
+      "name": "♻️ 自动选择",
+      "type": "url-test",
+      "include-all": true,
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
+      "interval": 300,
+      "tolerance": 50,
+      "hidden": true
+    },
+    {
+      ...groupBaseOption,
       "name": "节点选择",
       "type": "select",
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg",
+      "proxies": ["♻️ 自动选择"],
     },
     {
       ...groupBaseOption,
       "name": "谷歌服务",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
@@ -265,7 +275,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "YouTube",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg"
     },
@@ -273,7 +283,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Netflix",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/netflix.svg"
     },
@@ -281,7 +291,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "电报消息",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
@@ -305,7 +315,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "微软服务",
       "type": "select",
-      "proxies": ["全局直连","节点选择"],
+      "proxies": ["全局直连", "节点选择"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
     },
@@ -313,7 +323,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "iCloud服务",
       "type": "select",
-      "proxies": ["全局直连","节点选择"],
+      "proxies": ["全局直连", "节点选择"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/iCloud.svg"
     },
@@ -321,7 +331,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "苹果服务",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
     },
@@ -338,7 +348,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "哔哩哔哩港澳台",
       "type": "select",
-      "proxies": ["全局直连","节点选择"],
+      "proxies": ["全局直连", "节点选择"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/bilibili.svg"
@@ -347,7 +357,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Spotify",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/spotify.svg"
     },
@@ -362,7 +372,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "全局直连",
       "type": "select",
-      "proxies": ["DIRECT","节点选择"],
+      "proxies": ["DIRECT", "节点选择"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
@@ -377,7 +387,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "漏网之鱼",
       "type": "select",
-      "proxies": ["节点选择","全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
@@ -387,8 +397,8 @@ function main(config) {
   // 覆盖原配置中的规则
   config["rule-providers"] = ruleProviders;
   config["rules"] = rules;
-// 添加判断
-  if(config["proxies"]) {
+  // 添加判断
+  if (config["proxies"]) {
     config["proxies"].forEach(proxy => {
       // 为每个节点设置 udp = true
       proxy.udp = true

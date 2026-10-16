@@ -41,15 +41,23 @@ const dnsConfig = {
     // 微信快速登录检测失败
     "localhost.work.weixin.qq.com"
   ],
+  "use-hosts": false,
   "default-nameserver": ["223.5.5.5", "103.27.24.1"],//可修改成自己ISP的DNS
-  "nameserver": [...foreignNameservers],
-  "fallback": [...domesticNameservers],
-  "proxy-server-nameserver": [...domesticNameservers],
-  "direct-nameserver": [...domesticNameservers],
   "nameserver-policy": {
     "geosite:private,cn": domesticNameservers,
     "cloudflare-ech.com": ["https://dns.alidns.com/dns-query"]
-  }
+  },
+  "nameserver": [...foreignNameservers],
+  "fallback": [...domesticNameservers],
+  "fallback-filter": {
+    "geoip": true,
+    "geoip-code": 'CN',
+    "geosite": ["gfw"],
+    "ipcidr": ["240.0.0.0/4"],
+    "domain": ['+.google.com', '+.facebook.com', '+.youtube.com']
+  },
+  "proxy-server-nameserver": [...domesticNameservers],
+  "direct-nameserver": [...domesticNameservers]
 };
 // 规则集通用配置
 const ruleProviderCommon = {

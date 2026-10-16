@@ -41,13 +41,14 @@ const dnsConfig = {
     // 微信快速登录检测失败
     "localhost.work.weixin.qq.com"
   ],
-  "default-nameserver": ["223.5.5.5", "1.2.4.8"],//可修改成自己ISP的DNS
+  "default-nameserver": ["223.5.5.5", "103.27.24.1"],//可修改成自己ISP的DNS
   "nameserver": [...foreignNameservers],
+  "fallback": [...domesticNameservers],
   "proxy-server-nameserver": [...domesticNameservers],
   "direct-nameserver": [...domesticNameservers],
   "nameserver-policy": {
     "geosite:private,cn": domesticNameservers,
-    "cloudflare-ech.com":["https://dns.alidns.com/dns-query"]
+    "cloudflare-ech.com": ["https://dns.alidns.com/dns-query"]
   }
 };
 // 规则集通用配置

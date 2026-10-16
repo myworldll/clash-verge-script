@@ -16,7 +16,7 @@ const dnsConfig = {
   "enable": true,
   "listen": "0.0.0.0:1053",
   "ipv6": false,
-  "prefer-h3": false,
+  "prefer-h3": true,
   "respect-rules": true,
   "use-system-hosts": false,
   "cache-algorithm": "arc",

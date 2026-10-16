@@ -46,7 +46,8 @@ const dnsConfig = {
   "proxy-server-nameserver": [...domesticNameservers],
   "direct-nameserver": [...domesticNameservers],
   "nameserver-policy": {
-    "geosite:private,cn": domesticNameservers
+    "geosite:private,cn": domesticNameservers,
+    "cloudflare-ech.com":["https://dns.alidns.com/dns-query"]
   }
 };
 // 规则集通用配置

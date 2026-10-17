@@ -47,8 +47,8 @@ const dnsConfig = {
     "geosite:private,cn": domesticNameservers,
     "cloudflare-ech.com": ["https://dns.alidns.com/dns-query"]
   },
-  "nameserver": [...foreignNameservers],
-  "fallback": [...domesticNameservers],
+  "nameserver": [...domesticNameservers],
+  "fallback": [...foreignNameservers],
   "fallback-filter": {
     "geoip": true,
     "geoip-code": 'CN',
@@ -56,7 +56,7 @@ const dnsConfig = {
     "ipcidr": ["240.0.0.0/4"],
     "domain": ['+.google.com', '+.facebook.com', '+.youtube.com']
   },
-  "proxy-server-nameserver": [...domesticNameservers],
+  "proxy-server-nameserver": [...foreignNameservers],
   "direct-nameserver": [...domesticNameservers]
 };
 // 规则集通用配置
@@ -238,8 +238,8 @@ const groupBaseOption = {
   "url": "https://www.google.com/generate_204",
   "lazy": true,
   "max-failed-times": 3,
+  "hidden": false
 };
-
 // 程序入口
 function main(config) {
   const proxyCount = config?.proxies?.length ?? 0;
@@ -268,10 +268,10 @@ function main(config) {
       ...groupBaseOption,
       "name": "节点选择",
       "type": "select",
+      "proxies": ["♻️ 自动选择"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg",
-      "proxies": ["♻️ 自动选择"],
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
       ...groupBaseOption,
@@ -403,7 +403,6 @@ function main(config) {
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
     }
   ];
-
   // 覆盖原配置中的规则
   config["rule-providers"] = ruleProviders;
   config["rules"] = rules;
@@ -417,5 +416,4 @@ function main(config) {
   }
   // 返回修改后的配置
   return config;
-
 }

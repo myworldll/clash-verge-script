@@ -9,7 +9,6 @@ const foreignNameservers = [
   "https://77.88.8.8/dns-query", //YandexDNS
   "https://1.1.1.1/dns-query", // CloudflareDNS
   "https://8.8.4.4/dns-query", // GoogleDNS  
-
 ];
 // DNS配置
 const dnsConfig = {

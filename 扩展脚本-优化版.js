@@ -44,19 +44,19 @@ const dnsConfig = {
   "default-nameserver": ["223.5.5.5", "103.27.24.1"],//可修改成自己ISP的DNS
   "nameserver-policy": {
     "geosite:private,cn": domesticNameservers,
+    "geosite:gfw": foreignNameservers,
     "cloudflare-ech.com": ["https://dns.alidns.com/dns-query"]
   },
-  "nameserver": [...domesticNameservers],
-  "fallback": [...foreignNameservers],
+  "nameserver": domesticNameservers,
+  "fallback": foreignNameservers,
   "fallback-filter": {
     "geoip": true,
     "geoip-code": 'CN',
-    "geosite": ["gfw"],
     "ipcidr": ["240.0.0.0/4"],
     "domain": ['+.google.com', '+.facebook.com', '+.youtube.com']
   },
-  "proxy-server-nameserver": [...foreignNameservers],
-  "direct-nameserver": [...domesticNameservers]
+  "proxy-server-nameserver": foreignNameservers,
+  "direct-nameserver": domesticNameservers
 };
 // 规则集通用配置
 const ruleProviderCommon = {
@@ -237,7 +237,6 @@ const groupBaseOption = {
   "url": "https://www.google.com/generate_204",
   "lazy": true,
   "max-failed-times": 3,
-  "hidden": false
 };
 // 程序入口
 function main(config) {
@@ -409,8 +408,8 @@ function main(config) {
   if (config["proxies"]) {
     config["proxies"].forEach(proxy => {
       // 为每个节点设置 udp = true
-      proxy.udp = true
-
+      proxy["udp"] = true
+      proxy["client-fingerprint"] = 'chrome'
     })
   }
   // 返回修改后的配置

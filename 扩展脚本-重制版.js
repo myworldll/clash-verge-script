@@ -261,7 +261,7 @@ const proxyGroups = [
   {
     "name": "Adjust",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "url-test",
     "include-all": true,
@@ -271,7 +271,7 @@ const proxyGroups = [
   {
     "name": "Amazon",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -284,7 +284,7 @@ const proxyGroups = [
   {
     "name": "Apple",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -297,7 +297,7 @@ const proxyGroups = [
   {
     "name": "Bing",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -310,7 +310,7 @@ const proxyGroups = [
   {
     "name": "ChatGPT",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -323,7 +323,7 @@ const proxyGroups = [
   {
     "name": "Claude",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -336,7 +336,7 @@ const proxyGroups = [
   {
     "name": "Cloudflare",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -349,7 +349,7 @@ const proxyGroups = [
   {
     "name": "Discord",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -362,7 +362,7 @@ const proxyGroups = [
   {
     "name": "Disney Plus",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -375,7 +375,7 @@ const proxyGroups = [
   {
     "name": "Epic",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -388,7 +388,7 @@ const proxyGroups = [
   {
     "name": "Facebook",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -401,7 +401,7 @@ const proxyGroups = [
   {
     "name": "GitHub",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -414,7 +414,7 @@ const proxyGroups = [
   {
     "name": "Google",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -427,7 +427,7 @@ const proxyGroups = [
   {
     "name": "Instagram",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -440,7 +440,7 @@ const proxyGroups = [
   {
     "name": "Microsoft",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -453,7 +453,7 @@ const proxyGroups = [
   {
     "name": "Netflix",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -466,7 +466,7 @@ const proxyGroups = [
   {
     "name": "OneDrive",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -479,7 +479,7 @@ const proxyGroups = [
   {
     "name": "Reddit",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -492,7 +492,7 @@ const proxyGroups = [
   {
     "name": "Steam",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -505,7 +505,7 @@ const proxyGroups = [
   {
     "name": "Telegram",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -518,7 +518,7 @@ const proxyGroups = [
   {
     "name": "TikTok",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -531,7 +531,7 @@ const proxyGroups = [
   {
     "name": "Twitter",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -544,7 +544,7 @@ const proxyGroups = [
   {
     "name": "YouTube",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.youtube.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -557,7 +557,7 @@ const proxyGroups = [
   {
     "name": "WhatsApp",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [
@@ -570,7 +570,7 @@ const proxyGroups = [
   {
     "name": "Xbox",
     "interval": 300,
-    "url": "http://www.gstatic.com/generate_204",
+    "url": "https://www.gstatic.com/generate_204",
     "lazy": true,
     "type": "select",
     "proxies": [

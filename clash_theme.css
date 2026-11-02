@@ -6,7 +6,7 @@
   /* 金色（默认）- 修改为其他 RGB 值以更换流光颜色，例如 34,197,94 为绿色 */
   /* Gold (default) - change the RGB values to customize the flowing color, e.g., 34,197,94 for green */
 
-  --flow-speed: 1s;
+  --flow-speed: 3s;
   /* 流光动画时长 - 可设为 0.6s / 1.5s 等以加快或放慢动画 */
   /* Flow animation duration - set to 0.6s / 1.5s etc. to speed up or slow down the effect */
 }
@@ -80,6 +80,7 @@ tr:hover {
   box-shadow: 0 0 12px rgba(var(--flow-color), 0.4) !important;
   /* 悬停阴影，数值可调整：模糊半径 12px、alpha 0.4 可根据需要放大或缩小 */
   /* Hover shadow; values are adjustable: blur radius 12px and alpha 0.4 can be increased or decreased */
+
 }
 
 /* 动画关键帧：从左向右移动伪元素以产生流光滑动效果 */
@@ -89,6 +90,7 @@ tr:hover {
     left: -100%;
   }
 
+  45%,
   100% {
     left: 100%;
   }
@@ -180,14 +182,14 @@ tr:hover {
   /* ───────────── 控件 ───────────── */
   --lg-input-bg: rgba(6, 10, 20, 0.2);
   --lg-chip-bg: rgba(255, 255, 255, 0.07);
-  --lg-sticky-bg: rgba(9, 13, 22, 0.4);
+  --lg-sticky-bg: rgba(33, 78, 183, 0.4);
 
   /* ───────────── 浮层（对话框 / 菜单 / 气泡） ─────────────
      浮层有大面积 backdrop-filter，染色可以放得很低 */
   --lg-overlay-tint: rgba(13, 17, 29, 0.55);
   --lg-overlay-blur: 28px;
   --lg-backdrop: rgba(4, 7, 14, 0.3);
-  --lg-tooltip-bg: rgba(10, 13, 22, 0.78);
+  --lg-tooltip-bg: rgba(53, 85, 181, 0.78);
 
   --lg-scrollbar: rgba(255, 255, 255, 0.22);
   --lg-scrollbar-hover: rgba(255, 255, 255, 0.36);

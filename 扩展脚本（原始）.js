@@ -13,41 +13,51 @@ const foreignNameservers = [
 ];
 // DNS配置
 const dnsConfig = {
-  "enable": true,
-  "listen": "0.0.0.0:1053",
-  "ipv6": false,
-  "prefer-h3": false,
-  "respect-rules": true,
-  "use-system-hosts": false,
-  "cache-algorithm": "arc",
-  "enhanced-mode": "fake-ip",
-  "fake-ip-range": "198.18.0.1/16",
-  "fake-ip-filter": [
-    // 本地主机/设备
-    "+.lan",
-    "+.local",
-    // // Windows网络出现小地球图标
-    "+.msftconnecttest.com",
-    "+.msftncsi.com",
-    // QQ快速登录检测失败
-    "localhost.ptlogin2.qq.com",
-    "localhost.sec.qq.com",
-      // 追加以下条目
-    "+.in-addr.arpa", 
-    "+.ip6.arpa",
-    "time.*.com",
-    "time.*.gov",
-    "pool.ntp.org",
-    // 微信快速登录检测失败
-    "localhost.work.weixin.qq.com"
-  ],
-  "default-nameserver": ["223.5.5.5","1.2.4.8"],//可修改成自己ISP的DNS
-  "nameserver": [...foreignNameservers],
-  "proxy-server-nameserver":[...domesticNameservers],
-  "direct-nameserver":[...domesticNameservers],
-  "nameserver-policy": {
-  "geosite:private,cn": domesticNameservers
-  }
+    "enable": true,
+    "listen": "0.0.0.0:1053",
+    "ipv6": false,
+    "prefer-h3": true,
+    "respect-rules": true,
+    "use-system-hosts": false,
+    "cache-algorithm": "arc",
+    "enhanced-mode": "fake-ip",
+    "fake-ip-range": "198.18.0.1/16",
+    "fake-ip-filter": [
+        // 本地主机/设备
+        "+.lan",
+        "+.local",
+        // // Windows网络出现小地球图标
+        "+.msftconnecttest.com",
+        "+.msftncsi.com",
+        // QQ快速登录检测失败
+        "localhost.ptlogin2.qq.com",
+        "localhost.sec.qq.com",
+        // 追加以下条目
+        "+.in-addr.arpa",
+        "+.ip6.arpa",
+        "time.*.com",
+        "time.*.gov",
+        "pool.ntp.org",
+        // 微信快速登录检测失败
+        "localhost.work.weixin.qq.com"
+    ],
+    "use-hosts": false,
+    "default-nameserver": ["223.5.5.5", "103.27.24.1"],//可修改成自己ISP的DNS
+    "nameserver-policy": {
+        "geosite:private,cn": domesticNameservers,
+        "geosite:gfw": foreignNameservers,
+        "cloudflare-ech.com": ["https://dns.alidns.com/dns-query"]
+    },
+    "nameserver": domesticNameservers,
+    "fallback": foreignNameservers,
+    "fallback-filter": {
+        "geoip": true,
+        "geoip-code": 'CN',
+        "ipcidr": ["240.0.0.0/4"],
+        "domain": ['+.google.com', '+.facebook.com', '+.youtube.com']
+    },
+    "proxy-server-nameserver": foreignNameservers,
+    "direct-nameserver": domesticNameservers
 };
 // 规则集通用配置
 const ruleProviderCommon = {

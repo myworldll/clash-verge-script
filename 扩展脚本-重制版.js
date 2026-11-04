@@ -282,20 +282,26 @@ const rules = [
 // 代理组配置
 const proxyGroups = [
     {
-        "name": "Adjust",
+        "name": "♻️ 自动选择",
         "interval": 300,
         "url": "https://www.gstatic.com/generate_204",
         "lazy": true,
         "type": "url-test",
         "include-all": true,
         "tolerance": 50,
+        "hidden": true
+    },
+    {
+        "name": "Adjust",
+        "type": "select",
+        "proxies": [
+            "♻️ 自动选择"
+        ],
+        "include-all": true,
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
         "name": "Amazon",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -306,9 +312,6 @@ const proxyGroups = [
     },
     {
         "name": "Apple",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -319,9 +322,6 @@ const proxyGroups = [
     },
     {
         "name": "Bing",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -332,9 +332,6 @@ const proxyGroups = [
     },
     {
         "name": "ChatGPT",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -345,9 +342,6 @@ const proxyGroups = [
     },
     {
         "name": "Claude",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -358,9 +352,6 @@ const proxyGroups = [
     },
     {
         "name": "Cloudflare",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -371,9 +362,6 @@ const proxyGroups = [
     },
     {
         "name": "Discord",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -384,9 +372,6 @@ const proxyGroups = [
     },
     {
         "name": "Disney Plus",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -397,9 +382,6 @@ const proxyGroups = [
     },
     {
         "name": "Epic",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -410,9 +392,6 @@ const proxyGroups = [
     },
     {
         "name": "Facebook",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -423,9 +402,6 @@ const proxyGroups = [
     },
     {
         "name": "GitHub",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -436,9 +412,6 @@ const proxyGroups = [
     },
     {
         "name": "Google",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -449,9 +422,6 @@ const proxyGroups = [
     },
     {
         "name": "Instagram",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -462,9 +432,6 @@ const proxyGroups = [
     },
     {
         "name": "Microsoft",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -475,9 +442,6 @@ const proxyGroups = [
     },
     {
         "name": "Netflix",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -488,9 +452,6 @@ const proxyGroups = [
     },
     {
         "name": "OneDrive",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -501,9 +462,6 @@ const proxyGroups = [
     },
     {
         "name": "Reddit",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -514,9 +472,6 @@ const proxyGroups = [
     },
     {
         "name": "Steam",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -527,9 +482,6 @@ const proxyGroups = [
     },
     {
         "name": "Telegram",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -540,9 +492,6 @@ const proxyGroups = [
     },
     {
         "name": "TikTok",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -553,9 +502,6 @@ const proxyGroups = [
     },
     {
         "name": "Twitter",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -566,9 +512,6 @@ const proxyGroups = [
     },
     {
         "name": "YouTube",
-        "interval": 300,
-        "url": "https://www.youtube.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -579,9 +522,6 @@ const proxyGroups = [
     },
     {
         "name": "WhatsApp",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -592,9 +532,6 @@ const proxyGroups = [
     },
     {
         "name": "Xbox",
-        "interval": 300,
-        "url": "https://www.gstatic.com/generate_204",
-        "lazy": true,
         "type": "select",
         "proxies": [
             "Adjust",
@@ -753,6 +690,11 @@ function main(config) {
         config["proxies"] = config["proxies"].filter(item => {
             let x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
             return x.match(/官网|套餐|流量|异常|剩余/g) == null
+        })
+        //过滤非法节点类型
+        config["proxies"] = config["proxies"].filter(item => {
+            let x = item["type"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+            return x.match(/socks5|http/g) == null
         })
         // 定义支持或需要 TLS / 指纹特征的现代协议集合
         const tlsSupportedTypes = new Set(["vless", "trojan", "hysteria", "hysteria2", "tuic", "anytls"]);

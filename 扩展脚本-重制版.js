@@ -691,6 +691,23 @@ function main(config) {
             let x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
             return x.match(/官网|套餐|流量|异常|剩余/g) == null
         })
+        // 过滤非加密节点
+        config["proxies"] = config["proxies"].filter(item => {
+            const type = item.type?.toLowerCase();
+
+            // 默认不加密或不属于加密代理的类型
+            const unencryptedTypes = ["socks5", "http", "direct", "reject", "dns"];
+
+            if (unencryptedTypes.includes(type)) {
+                // HTTP 开启 TLS 时保留
+                if (type === "http" && item.tls === true) {
+                    return true;
+                }
+                return false;
+            }
+
+            return true;
+        });
         // 定义支持或需要 TLS / 指纹特征的现代协议集合
         const tlsSupportedTypes = new Set(["vless", "trojan", "hysteria", "hysteria2", "tuic", "anytls"]);
         // 完善并安全更新节点配置

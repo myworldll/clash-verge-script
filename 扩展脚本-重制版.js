@@ -684,60 +684,58 @@ function main(config) {
     // 覆盖原配置中的规则
     config["rule-providers"] = ruleProviders;
     config["rules"] = rules;
-    // 添加判断
-    if (config["proxies"]) {
-        //过滤广告
-        config["proxies"] = config["proxies"].filter(item => {
-            let x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-            return x.match(/官网|套餐|流量|异常|剩余/g) == null
-        })
-        // 过滤非加密节点
-        config["proxies"] = config["proxies"].filter(item => {
-            const type = item.type?.toLowerCase();
 
-            // 默认不加密或不属于加密代理的类型
-            const unencryptedTypes = ["socks5", "http", "direct", "reject", "dns"];
+    //过滤广告
+    config["proxies"] = config["proxies"].filter(item => {
+        let x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+        return x.match(/官网|套餐|流量|异常|剩余|机场|广告/g) == null
+    })
+    // 过滤非加密节点
+    config["proxies"] = config["proxies"].filter(item => {
+        const type = item.type?.toLowerCase();
 
-            if (unencryptedTypes.includes(type)) {
-                // HTTP 开启 TLS 时保留
-                if (type === "http" && item.tls === true) {
-                    return true;
-                }
-                return false;
-            }
+        // 默认不加密或不属于加密代理的类型
+        const unencryptedTypes = ["socks5", "http", "direct", "reject", "dns"];
 
-            return true;
-        });
-        // 定义支持或需要 TLS / 指纹特征的现代协议集合
-        const tlsSupportedTypes = new Set(["vless", "trojan", "hysteria", "hysteria2", "tuic", "anytls"]);
-        // 完善并安全更新节点配置
-        config["proxies"].forEach(proxy => {
-            // 1. 基础通用参数：udp 几乎所有节点都支持，可以通用
-            proxy["udp"] = true;
-            // 获取并统一转为小写以防大小写不一致
-            const proxyType = (proxy["type"] || "").toLowerCase();
-            // 2. 针对 VMess 协议的特殊判断：
-            // 只有当 VMess 使用了 ws (WebSocket) 或 gRPC 等传输层时才需要开启 TLS
-            const isVmessWithTLS = (proxyType === "vmess" && ["ws", "grpc"].includes(proxy["network"]));
-            // 3. 判断该节点是否需要配置 TLS 和指纹
-            if (tlsSupportedTypes.has(proxyType) || isVmessWithTLS) {
-                proxy["tls"] = true;
-                proxy["skip-cert-verify"] = true;
-                proxy["client-fingerprint"] = "chrome";
+        if (unencryptedTypes.includes(type)) {
+            // HTTP 开启 TLS 时保留
+            if (type === "http" && item.tls === true) {
+                return true;
             }
-            // 4. 针对支持 HTTP 伪装或 Header 的节点配置随机 User-Agent（改回普通的字符串）
-            if (User_Agent_lists && User_Agent_lists.length > 0) {
-                const randomUA = User_Agent_lists[Math.floor(Math.random() * User_Agent_lists.length)];
-                if (proxy["ws-opts"]) {
-                    proxy["ws-opts"]["headers"] = proxy["ws-opts"]["headers"] || {};
-                    proxy["ws-opts"]["headers"]["User-Agent"] = randomUA;
-                } else if (proxy["http-opts"]) {
-                    proxy["http-opts"]["headers"] = proxy["http-opts"]["headers"] || {};
-                    proxy["http-opts"]["headers"]["User-Agent"] = [randomUA];
-                }
+            return false;
+        }
+
+        return true;
+    });
+    // 定义支持或需要 TLS / 指纹特征的现代协议集合
+    const tlsSupportedTypes = new Set(["vless", "trojan", "hysteria", "hysteria2", "tuic", "anytls"]);
+    // 完善并安全更新节点配置
+    config["proxies"].forEach(proxy => {
+        // 1. 基础通用参数：udp 几乎所有节点都支持，可以通用
+        proxy["udp"] = true;
+        // 获取并统一转为小写以防大小写不一致
+        const proxyType = (proxy["type"] || "").toLowerCase();
+        // 2. 针对 VMess 协议的特殊判断：
+        // 只有当 VMess 使用了 ws (WebSocket) 或 gRPC 等传输层时才需要开启 TLS
+        const isVmessWithTLS = (proxyType === "vmess" && ["ws", "grpc"].includes(proxy["network"]));
+        // 3. 判断该节点是否需要配置 TLS 和指纹
+        if (tlsSupportedTypes.has(proxyType) || isVmessWithTLS) {
+            proxy["tls"] = true;
+            proxy["skip-cert-verify"] = true;
+            proxy["client-fingerprint"] = "chrome";
+        }
+        // 4. 针对支持 HTTP 伪装或 Header 的节点配置随机 User-Agent（改回普通的字符串）
+        if (User_Agent_lists && User_Agent_lists.length > 0) {
+            const randomUA = User_Agent_lists[Math.floor(Math.random() * User_Agent_lists.length)];
+            if (proxy["ws-opts"]) {
+                proxy["ws-opts"]["headers"] = proxy["ws-opts"]["headers"] || {};
+                proxy["ws-opts"]["headers"]["User-Agent"] = randomUA;
+            } else if (proxy["http-opts"]) {
+                proxy["http-opts"]["headers"] = proxy["http-opts"]["headers"] || {};
+                proxy["http-opts"]["headers"]["User-Agent"] = [randomUA];
             }
-        });
-    }
+        }
+    });
     // 返回修改后的配置
     return config;
 }

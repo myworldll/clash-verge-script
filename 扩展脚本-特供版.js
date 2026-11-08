@@ -405,6 +405,14 @@ const rules = [
 // 代理组配置
 let proxyGroups = [
     {
+        "name": '♻️ 自动选择',
+        "type": "url-test",
+        "include-all": true,
+        "url": "https://www.gstatic.com/generate_204",
+        "tolerance": 50,
+        "hidden": true
+    },
+    {
         "name": "Adjust",
         "interval": 300,
         "timeout": 2500,
@@ -638,48 +646,52 @@ function main(config) {
                 countryLocdic[countryLoc].push(proxy['name'])
             }
         })
-        config["proxy-groups"].forEach(proxy => {
-            if (proxy['name'].includes('Adjust')) {
-                proxy['proxies'].push('Select', "DIRECT", ...countryLocLis.map(item => item + '_并发'))
-            } else {
-                proxy['include-all'] = true
-            }
-        })
-        for (const key of Object.keys(countryLocdic)) {
-            config["proxy-groups"].unshift({
-                "name": key + '_并发',
-                "type": "load-balance",
-                "proxies": countryLocdic[key],
-                "url": "https://www.gstatic.com/generate_204",
-                "strategy": "consistent-hashing",
-                "hidden": true
-            }, {
-                "name": key + '_优选',
-                "type": "url-test",
-                "proxies": countryLocdic[key],
-                "url": "https://www.gstatic.com/generate_204",
-                "tolerance": 50,
-                "hidden": true
+        const iser = Object.values(countryLocdic).some(item => item.length > 1)
+        if (countryLocdic && iser) {
+            config["proxy-groups"].forEach(proxy => {
+                if (proxy['name'].includes('Adjust')) {
+                    proxy['proxies'].push('Select', "DIRECT", ...countryLocLis.map(item => item + '_并发'))
+                } else {
+                    proxy['include-all'] = true
+                }
             })
-        }
-        config["proxy-groups"].unshift({
-            "name": '♻️ 自动选择',
-            "type": "url-test",
-            "include-all": true,
-            "url": "https://www.gstatic.com/generate_204",
-            "tolerance": 50,
-            "hidden": true
-        }, {
-            "name": 'Select',
-            "interval": 300,
-            "timeout": 2500,
-            "lazy": false,
-            "type": "select",
-            "proxies": ['♻️ 自动选择', ...countryLocLis.map(item => item + '_优选')],
-            "url": "https://www.gstatic.com/generate_204",
-            "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
-        })
+            for (const key of Object.keys(countryLocdic)) {
+                config["proxy-groups"].unshift({
+                    "name": key + '_并发',
+                    "type": "load-balance",
+                    "proxies": countryLocdic[key],
+                    "url": "https://www.gstatic.com/generate_204",
+                    "strategy": "consistent-hashing",
+                    "hidden": true
+                }, {
+                    "name": key + '_优选',
+                    "type": "url-test",
+                    "proxies": countryLocdic[key],
+                    "url": "https://www.gstatic.com/generate_204",
+                    "tolerance": 50,
+                    "hidden": true
+                })
+            }
+            config["proxy-groups"].unshift({
+                "name": 'Select',
+                "interval": 300,
+                "timeout": 2500,
+                "lazy": false,
+                "type": "select",
+                "proxies": ['♻️ 自动选择', ...countryLocLis.map(item => item + '_优选')],
+                "url": "https://www.gstatic.com/generate_204",
+                "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
+            })
+        } else {
+            config["proxy-groups"].forEach(proxy => {
+                if (proxy['name'].includes('Adjust')) {
+                    proxy['proxies'] = ['♻️ 自动选择']
+                }
+                proxy['include-all'] = true
+            })
 
+        }
+        //完善节点
         // 定义支持或需要 TLS / 指纹特征的现代协议集合
         const tlsSupportedTypes = new Set(["vless", "trojan", "hysteria", "hysteria2", "tuic", "anytls"]);
         // 完善并安全更新节点配置

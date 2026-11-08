@@ -381,7 +381,7 @@ const rules = [
     //Google 在中国大陆可直连的域名列表
     "RULE-SET,google,Google",
     //代理域名列表
-    "RULE-SET,proxy,Balance",
+    "RULE-SET,proxy,Adjust",
     //直连域名列表
     "RULE-SET,direct,DIRECT",
     //局域网 IP 及保留 IP 地址列表
@@ -391,16 +391,16 @@ const rules = [
     //Telegram 使用的 IP 地址列表
     "RULE-SET,telegramcidr,Telegram,no-resolve",
     //非中国大陆使用的顶级域名列表
-    "RULE-SET,tld-not-cn,Balance",
+    "RULE-SET,tld-not-cn,Adjust",
     //GFWList 域名列表
-    "RULE-SET,gfw,Balance",
+    "RULE-SET,gfw,Adjust",
     //直连大陆
     "DOMAIN,clash.razord.top,DIRECT",
     "DOMAIN,yacd.haishan.me,DIRECT",
     "GEOIP,LAN,DIRECT,no-resolve",
     "GEOIP,CN,DIRECT,no-resolve",
     //漏网之鱼
-    "MATCH,Balance"
+    "MATCH,Adjust"
 ];
 // 代理组配置
 let proxyGroups = [
@@ -413,180 +413,180 @@ let proxyGroups = [
         "hidden": true
     },
     {
-        "name": "Balance",
+        "name": "Adjust",
         "interval": 300,
         "timeout": 2500,
-        "lazy": true,
+        "lazy": false,
         "type": "select",
         "proxies": [],
         "url": "https://www.gstatic.com/generate_204",
-        "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg"
+        "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
         "name": "Amazon",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.amazon.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/amazon.svg"
     },
     {
         "name": "Apple",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.apple.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
     },
     {
         "name": "Bing",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.bing.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/bing.svg"
     },
     {
         "name": "ChatGPT",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.chatgpt.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
         "name": "Claude",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.claude.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/claude.svg"
     },
     {
         "name": "Cloudflare",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.cloudflare.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/cloudflare.svg"
     },
     {
         "name": "Discord",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.discord.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/discord.svg"
     },
     {
         "name": "Disney Plus",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.disneyplus.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/disney_plus.svg"
     },
     {
         "name": "Epic",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.epicgames.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/epic.svg"
     },
     {
         "name": "Facebook",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.facebook.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/facebook.svg"
     },
     {
         "name": "GitHub",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.github.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/github.svg"
     },
     {
         "name": "Google",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.google.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
     {
         "name": "Instagram",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.instagram.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/instagram.svg"
     },
     {
         "name": "Microsoft",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.microsoft.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
     },
     {
         "name": "Netflix",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.netflix.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/netflix.svg"
     },
     {
         "name": "OneDrive",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.onedrive.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/onedrive.svg"
     },
     {
         "name": "Reddit",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.reddit.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/reddit.svg"
     },
     {
         "name": "Steam",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.steam.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/steam.svg"
     },
     {
         "name": "Telegram",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.telegram.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
     {
         "name": "TikTok",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.tiktok.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/tiktok.svg"
     },
     {
         "name": "Twitter",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.twitter.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/twitter.svg"
     },
     {
         "name": "YouTube",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.youtube.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg"
     },
     {
         "name": "WhatsApp",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.whatsapp.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/whatsapp.svg"
     },
     {
         "name": "Xbox",
         "type": "select",
-        "proxies": ["Balance", "DIRECT"],
+        "proxies": ["Adjust", "DIRECT"],
         "url": "https://www.xbox.com",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/xbox.svg"
     }
@@ -675,11 +675,10 @@ function main(config) {
     const iser = Object.values(countryLocdic).some(item => item.length > 1)
     if (countryLocdic && iser) {
         config["proxy-groups"].forEach(proxy => {
-            if (proxy['name'].includes('Balance')) {
-                proxy['proxies'].push('Speed', "DIRECT", ...countryLocLis.map(item => item + '_并发'))
-            } else {
-                proxy['include-all'] = true
+            if (proxy['name'].includes('Adjust')) {
+                proxy['proxies'].push('♻️ 自动选择', 'Speed', 'DIRECT')
             }
+            proxy['include-all'] = true
         })
         for (const key of Object.keys(countryLocdic)) {
             config["proxy-groups"].unshift({
@@ -699,28 +698,27 @@ function main(config) {
             })
         }
         config["proxy-groups"].unshift({
-            "name": 'Adjust',
+            "name": 'Balance',
             "interval": 300,
             "timeout": 2500,
-            "lazy": false,
+            "lazy": true,
             "type": "select",
-            "proxies": ['♻️ 自动选择'],
-            "include-all": true,
+            "proxies": [...countryLocLis.map(item => item + '_并发')],
             "url": "https://www.gstatic.com/generate_204",
-            "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
+            "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg"
         }, {
             "name": 'Speed',
             "interval": 300,
             "timeout": 2500,
-            "lazy": false,
+            "lazy": true,
             "type": "select",
-            "proxies": ['Adjust', ...countryLocLis.map(item => item + '_优选')],
+            "proxies": ['Balance', ...countryLocLis.map(item => item + '_优选')],
             "url": "https://www.gstatic.com/generate_204",
             "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
         })
     } else {
         config["proxy-groups"].forEach(proxy => {
-            if (proxy['name'].includes('Balance')) {
+            if (proxy['name'].includes('Adjust')) {
                 proxy['proxies'] = ['♻️ 自动选择']
             }
             proxy['include-all'] = true

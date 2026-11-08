@@ -410,7 +410,7 @@ let proxyGroups = [
         "timeout": 2500,
         "lazy": false,
         "type": "select",
-        "proxies": ["DIRECT"],
+        "proxies": [],
         "url": "https://www.gstatic.com/generate_204",
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
@@ -640,7 +640,7 @@ function main(config) {
         })
         config["proxy-groups"].forEach(proxy => {
             if (proxy['name'].includes('Adjust')) {
-                proxy['proxies'].unshift('Select', ...countryLocLis.map(item => item + '_并发'))
+                proxy['proxies'].push('Select', "DIRECT", ...countryLocLis.map(item => item + '_并发'))
             } else {
                 proxy['include-all'] = true
             }

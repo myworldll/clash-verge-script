@@ -676,7 +676,7 @@ function main(config) {
     if (countryLocdic && iser) {
         config["proxy-groups"].forEach(proxy => {
             if (proxy['name'].includes('Adjust')) {
-                proxy['proxies'].push('♻️ 自动选择', 'Speed', 'DIRECT')
+                proxy['proxies'].push('♻️ 自动选择', 'Balance', 'Speed', 'DIRECT')
             }
             proxy['include-all'] = true
         })
@@ -712,7 +712,7 @@ function main(config) {
             "timeout": 2500,
             "lazy": true,
             "type": "select",
-            "proxies": ['Balance', ...countryLocLis.map(item => item + '_优选')],
+            "proxies": [...countryLocLis.map(item => item + '_优选')],
             "url": "https://www.gstatic.com/generate_204",
             "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
         })

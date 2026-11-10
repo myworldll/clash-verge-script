@@ -591,15 +591,12 @@ let proxyGroups = [
         "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/xbox.svg"
     }
 ]
-
 // 程序入口
 function main(config) {
     const proxyCount = config?.proxies?.length ?? 0;
     const proxyProviderCount =
         typeof config?.["proxy-providers"] === "object" ? Object.keys(config["proxy-providers"]).length : 0;
-    if (proxyCount === 0 && proxyProviderCount === 0) {
-        throw new Error("配置文件中未找到任何代理");
-    }
+    if (proxyCount === 0 && proxyProviderCount === 0) { throw new Error("配置文件中未找到任何代理"); }
     config["geodata-mode"] = true;
     config["geox-url"] = {
         "geoip": "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat",
@@ -612,24 +609,16 @@ function main(config) {
     config["rules"] = rules;
     // 覆盖原配置中的代理组
     config["proxy-groups"] = proxyGroups;
-
     //过滤
+    // 默认不加密或不属于加密代理的类型
+    const unencryptedTypes = ["socks5", "http", "direct", "reject", "dns"];
     config["proxies"] = config["proxies"].filter(item => {
         //过滤广告
-        let x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+        const x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
         const a = x.match(/官网|套餐|流量|异常|剩余|广告|机场/g) === null
         // 过滤非加密节点
         const type = item.type?.toLowerCase();
-        // 默认不加密或不属于加密代理的类型
-        const unencryptedTypes = ["socks5", "http", "direct", "reject", "dns"];
-        if (unencryptedTypes.includes(type)) {
-            // HTTP 开启 TLS 时保留
-            if (type === "http" && item.tls === true) {
-                const b = true;
-            }
-            const b = false;
-        }
-        const b = true;
+        const b = !unencryptedTypes.includes(type) || (type === "http" && item.tls === true);
         return a && b
     })
     //优化节点
@@ -676,11 +665,8 @@ function main(config) {
     const iser = Object.values(countryLocdic).some(item => item.length > 1)
     if (countryLocdic && iser) {
         config["proxy-groups"].forEach(proxy => {
-            if (proxy['name'].includes('Adjust')) {
-                proxy['proxies'].push('Select', "DIRECT", ...countryLocLis.map(item => item + '_并发'))
-            } else {
-                proxy['include-all'] = true
-            }
+            if (proxy['name'].includes('Adjust')) { proxy['proxies'].push('♻️ 自动选择', 'Balance', 'Speed', 'DIRECT') }
+            proxy['include-all'] = true
         })
         for (const key of Object.keys(countryLocdic)) {
             config["proxy-groups"].unshift({
@@ -700,23 +686,29 @@ function main(config) {
             })
         }
         config["proxy-groups"].unshift({
-            "name": 'Select',
+            "name": 'Balance',
             "interval": 300,
             "timeout": 2500,
-            "lazy": false,
+            "lazy": true,
             "type": "select",
-            "proxies": ['♻️ 自动选择', ...countryLocLis.map(item => item + '_优选')],
+            "proxies": [...countryLocLis.map(item => item + '_并发')],
+            "url": "https://www.gstatic.com/generate_204",
+            "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg"
+        }, {
+            "name": 'Speed',
+            "interval": 300,
+            "timeout": 2500,
+            "lazy": true,
+            "type": "select",
+            "proxies": [...countryLocLis.map(item => item + '_优选')],
             "url": "https://www.gstatic.com/generate_204",
             "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
         })
     } else {
         config["proxy-groups"].forEach(proxy => {
-            if (proxy['name'].includes('Adjust')) {
-                proxy['proxies'] = ['♻️ 自动选择']
-            }
+            if (proxy['name'].includes('Adjust')) { proxy['proxies'] = ['♻️ 自动选择', 'DIRECT'] }
             proxy['include-all'] = true
         })
-
     }
     // 返回修改后的配置
     return config;

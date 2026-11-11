@@ -615,7 +615,7 @@ function main(config) {
     config["proxies"] = config["proxies"].filter(item => {
         //过滤广告
         const x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-        const a = x.match(/官网|官網|套餐|流量|异常|剩余|广告|廣告|机场|機場|网址|網址|域名|公告|客服|群组|群組|频道|頻道/g) === null
+        const a = x.match(/官网|官網|套餐|流量|异常|剩余|广告|廣告|机场|機場|网址|網址|公告|客服|群组|群組|频道|頻道/g) === null
         // 过滤非加密节点
         const type = item.type?.toLowerCase();
         const b = !unencryptedTypes.includes(type) || (type === "http" && item.tls === true);

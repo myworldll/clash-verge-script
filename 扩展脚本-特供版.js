@@ -123,7 +123,7 @@ const User_Agent_lists = [
 ]
 // 国内DNS服务器
 const domesticNameservers = [
-    "https://223.5.5.5/dns-query", // 阿里DoH
+    "https://dns.alidns.com/dns-query", // 阿里DoH
     "https://doh.pub/dns-query" // 腾讯DoH
 ];
 // 国外DNS服务器
@@ -615,7 +615,7 @@ function main(config) {
     config["proxies"] = config["proxies"].filter(item => {
         //过滤广告
         const x = item["name"].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-        const a = x.match(/官网|套餐|流量|异常|剩余|广告|机场/g) === null
+        const a = x.match(/官网|官網|套餐|流量|异常|剩余|广告|廣告|机场|機場|网址|網址|域名|公告|客服|群组|群組|频道|頻道/g) === null
         // 过滤非加密节点
         const type = item.type?.toLowerCase();
         const b = !unencryptedTypes.includes(type) || (type === "http" && item.tls === true);
@@ -626,6 +626,10 @@ function main(config) {
     let countryLocdic = {}
     // 定义支持或需要 TLS / 指纹特征的现代协议集合
     const tlsSupportedTypes = new Set(["vless", "trojan", "hysteria", "hysteria2", "tuic", "anytls"]);
+    // 支持 TLS 的代理协议
+    const tlsRequiredTypes = ["trojan", "hysteria2", "tuic", "anytls"];
+    // 支持按 tls 字段判断的协议
+    const tlsOptionalTypes = ["vmess", "vless", "http", "socks5"];
     config['proxies'].forEach(proxy => {
         //优化分流
         const countryLoc = proxy['name']?.split("_")[0]
@@ -647,7 +651,7 @@ function main(config) {
         // 3. 判断该节点是否需要配置 TLS 和指纹
         if (tlsSupportedTypes.has(proxyType) || isVmessWithTLS) {
             proxy["tls"] = true;
-            proxy["skip-cert-verify"] = true;
+            proxy["skip-cert-verify"] = false;
             proxy["client-fingerprint"] = "chrome";
         }
         // 4. 针对支持 HTTP 伪装或 Header 的节点配置随机 User-Agent（改回普通的字符串）
@@ -660,6 +664,18 @@ function main(config) {
                 proxy["http-opts"]["headers"] = proxy["http-opts"]["headers"] || {};
                 proxy["http-opts"]["headers"]["User-Agent"] = [randomUA];
             }
+        }
+        //开启ech
+        const type = proxy.type?.toLowerCase();
+        // 判断是否使用 TLS
+        const tlsEnabled = tlsRequiredTypes.includes(type) || (tlsOptionalTypes.includes(type) && proxy.tls === true);
+        // 排除 REALITY 配置，避免两种机制配置冲突
+        const isReality = !!proxy["reality-opts"];
+        if (tlsEnabled && !isReality) {
+            proxy["ech-opts"] = {
+                enable: true,
+                "query-server-name": 'cloudflare-ech.com'
+            };
         }
     })
     const iser = Object.values(countryLocdic).some(item => item.length > 1)
